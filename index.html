@@ -310,34 +310,18 @@
       if (exploitTriggered || jailbreakBtn.disabled) return;
       exploitTriggered = true;
       jailbreakBtn.disabled = true;
-      jailbreakBtn.innerHTML = '<span>⚙️ Running Exploit...</span>';
+      jailbreakBtn.innerHTML = '<span>⚙️ Launching Exploit...</span>';
       stopCountdown();
 
       const activeFw = (selectedFw !== "auto") ? selectedFw : (detectedKey || "13.52");
       setProgress(10, `Starting exploit pipeline for FW ${activeFw}...`);
 
-      const isPs4 = /PlayStation\s+4/i.test(navigator.userAgent);
-      if (!isPs4) {
-        // PC / Browser Testing Mode: provide animated demonstration & load jb.js
-        logToDebug("PC environment detected. Launching exploit engine in test mode...");
-      }
-
       try {
-        // Injects jb.js as an ES Module to run the exploit
-        const script = document.createElement("script");
-        script.type = "module";
-        script.src = "./jb.js?v=" + Date.now();
-        script.onerror = function(e) {
-          setProgress(10, "Failed to load jb.js: " + (e.message || "Network/Cache error"));
-          jailbreakBtn.disabled = false;
-          exploitTriggered = false;
-        };
-        document.body.appendChild(script);
-      } catch (err) {
-        setProgress(10, "Execution error: " + (err.message || err));
-        jailbreakBtn.disabled = false;
-        exploitTriggered = false;
-      }
+        sessionStorage.setItem("lp_target_fw", activeFw);
+      } catch (e) {}
+
+      // Instant transition to cached jb.html with static module import
+      location.replace("jb.html" + location.search);
     }
 
     // Initialization & Event Binding
@@ -378,11 +362,11 @@
         if (ac.status === ac.IDLE) {
           cacheBadge.textContent = "🛡️ 100% Offline Ready";
           cacheBadge.className = "badge badge-success";
-          setProgress(100, "All exploit assets 100% cached offline.");
+          statusLabel.textContent = "All exploit assets 100% cached offline. Click Start Jailbreak to run.";
         } else if (!navigator.onLine) {
-          cacheBadge.textContent = "🛡️ Offline Mode (Cached)";
+          cacheBadge.textContent = "🛡️ Offline Ready (Cached)";
           cacheBadge.className = "badge badge-success";
-          setProgress(100, "Operating offline from local cache.");
+          statusLabel.textContent = "Operating offline from local cache. Click Start Jailbreak to run.";
         }
 
         ac.addEventListener("checking", () => {
@@ -412,7 +396,7 @@
         ac.addEventListener("noupdate", () => {
           cacheBadge.textContent = "🛡️ 100% Offline Ready";
           cacheBadge.className = "badge badge-success";
-          setProgress(100, "Local offline cache verified and up to date.");
+          statusLabel.textContent = "Local offline cache verified and up to date.";
         });
 
         ac.addEventListener("updateready", () => {
@@ -426,7 +410,7 @@
           if (!navigator.onLine || ac.status === ac.IDLE) {
             cacheBadge.textContent = "🛡️ 100% Offline Ready";
             cacheBadge.className = "badge badge-success";
-            setProgress(100, "Operating in offline mode.");
+            statusLabel.textContent = "Operating offline from local cache. Click Start Jailbreak to run.";
           }
         });
       }
