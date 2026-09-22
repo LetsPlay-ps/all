@@ -997,3 +997,22 @@ footer strong {
   box-shadow: 0 0 30px rgba(192, 132, 252, 0.7);
   transform: translateY(-2px);
 }
+
+.cancel-auto-btn {
+  background: rgba(255, 51, 68, 0.2);
+  border: 1px solid #ff3344;
+  color: #ff3344;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.cancel-auto-btn:hover {
+  background: #ff3344;
+  color: #ffffff;
+}
