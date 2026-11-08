@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" manifest="505.manifest">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LET'S PLAY · Offline Cache</title>
+  <link rel="icon" type="image/png" href="icon0.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="main-wrapper">
+    <header class="header-card">
+      <h1 class="brand-title">LET'S PLAY</h1>
+      <p class="brand-subtitle">Offline Cache Installation · FW 5.05 / 5.07</p>
+    </header>
+
+    <div class="controller-stage">
+      <img src="LP_controller.png" width="1080" height="695" alt="PS4 DualShock Controller" class="controller-base-img">
+    </div>
+
+    <section class="progress-card" aria-label="Offline cache installation">
+      <div class="progress-header">
+        <div class="progress-status-text" id="msgs" role="status">Starting offline cache installation…</div>
+        <span class="progress-percentage" id="progress-value" aria-hidden="true">0%</span>
+      </div>
+      <div class="progress-track" id="progress" role="progressbar" aria-label="Cache progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress-fill"></div>
+      </div>
+    </section>
+    <div class="action-container">
+      <a class="cache-action" href="index.html">Back to Host</a>
+    </div>
+    <footer>Created by Game Shop Team</footer>
+  </main>
+  <script src="cache.js"></script>
+</body>
+</html>

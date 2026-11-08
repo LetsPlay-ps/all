@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# LET'S PLAY controller interface
+
+CACHE:
+./
+index.html
+cache505.html
+style.css
+host.js
+cache.js
+LP_controller.png
+icon0.png
+goldhen_2.4b18.13.bin
+505/exploit.js
+
+NETWORK:
+*
